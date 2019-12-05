@@ -125,9 +125,9 @@
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">待辦事項</span>
     </div>
-    <input type="text" class="form-control" placeholder="準備要做的任務">
+    <input v-model="newTodo" type="text" class="form-control" placeholder="準備要做的任務">
     <div class="input-group-append">
-      <button class="btn btn-primary" type="button">新增</button>
+      <button class="btn btn-primary" type="button" @click="addTodo">新增</button>
     </div>
   </div>
   <div class="card text-center">
@@ -145,25 +145,12 @@
       </ul>
     </div>
     <ul class="list-group list-group-flush text-left">
-      <li class="list-group-item">
+      <li v-for="item in todos" class="list-group-item">
         <div class="d-flex">
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="a1">
+            <input type="checkbox" class="form-check-input" :id="item.id">
             <label class="form-check-label" for="a1">
-              吃晚餐
-            </label>
-          </div>
-          <button type="button" class="close ml-auto" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="d-flex">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="a1">
-            <label class="form-check-label completed" for="a1">
-              打團戰
+              {{ item.title }}
             </label>
           </div>
           <button type="button" class="close ml-auto" aria-label="Close">
@@ -185,7 +172,32 @@
 <script>
 var app = new Vue({
   el: '#app',
-  data: {},
+  data: {
+    newTodo: '',
+    todos: [
+      {
+        id: '',
+        title: '你好',
+        completed: false
+      }
+    ]
+  },
+  methods: {
+    addTodo: function() {
+      var value = this.newTodo
+      var timestamp = Math.floor(Date.now())
+
+      console.log(value, timestamp)
+
+      this.todos.push({
+        id: timestamp,
+        title: value,
+        completed: false
+      })
+
+      this.newTodo = ''
+    }
+  },
 });
 </script>
 
