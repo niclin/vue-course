@@ -154,7 +154,7 @@
             </label>
           </div>
           <button type="button" class="close ml-auto" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true" @click="deleteTodo(item)">&times;</span>
           </button>
         </div>
       </li>
@@ -196,6 +196,10 @@ var app = new Vue({
       })
 
       this.newTodo = ''
+    },
+    deleteTodo: function(item) {
+      var index = this.todos.indexOf(item)
+      this.todos.splice(index,1)
     }
   },
 });
