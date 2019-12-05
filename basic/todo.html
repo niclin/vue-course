@@ -134,22 +134,22 @@
     <div class="card-header">
       <ul class="nav nav-tabs card-header-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#">全部</a>
+          <a class="nav-link" :class="{active: visibility == 'all'}" @click.prevent="visibility = 'all'" href="#">全部</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">進行中</a>
+          <a class="nav-link" :class="{active: visibility == 'unfinished'}" @click.prevent="visibility = 'unfinished'" href="#">進行中</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">已完成</a>
+          <a class="nav-link" :class="{active: visibility == 'finished'}" @click.prevent="visibility = 'finished'" href="#">已完成</a>
         </li>
       </ul>
     </div>
     <ul class="list-group list-group-flush text-left">
-      <li v-for="item in todos" class="list-group-item">
+      <li v-for="item in filteredList" class="list-group-item">
         <div class="d-flex">
           <div class="form-check">
             <input type="checkbox" class="form-check-input" v-model="item.completed" :id="item.id">
-            <label class="form-check-label" for="a1">
+            <label :class="{ 'completed': item.completed }" class="form-check-label" for="a1">
               {{ item.title }}
             </label>
           </div>
@@ -174,6 +174,7 @@ var app = new Vue({
   el: '#app',
   data: {
     newTodo: '',
+    visibility: "all",
     todos: [
       {
         id: '',
@@ -210,6 +211,23 @@ var app = new Vue({
       return this.todos.filter(function(item){
         return item.completed == false
       }).length
+    },
+    filteredList(){
+      if (this.visibility == 'all') {
+        return this.todos
+      }
+
+      if (this.visibility == 'unfinished') {
+        return this.todos.filter(function(item) {
+          return item.completed == false
+        });
+      }
+
+      if (this.visibility == 'finished') {
+        return this.todos.filter(function(item) {
+          return item.completed == true
+        });
+      }
     }
   },
 });
