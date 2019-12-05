@@ -163,7 +163,7 @@
       </li>
     </ul>
     <div class="card-footer d-flex justify-content-between">
-      <span>還有 3 筆任務未完成</span>
+      <span>還有 {{ unCheckedCount }} 筆任務未完成</span>
       <a href="#">清除所有任務</a>
     </div>
   </div>
@@ -200,6 +200,13 @@ var app = new Vue({
     deleteTodo: function(item) {
       var index = this.todos.indexOf(item)
       this.todos.splice(index,1)
+    }
+  },
+  computed: {
+    unCheckedCount() {
+      return this.todos.filter(function(item){
+        return item.completed == false
+      }).length
     }
   },
 });
