@@ -124,7 +124,7 @@
   <input type="text" class="form-control" v-model="text">
   <button class="btn btn-primary mt-1">反轉字串</button>
   <div class="mt-3">
-    {{ text.split('').reverse().join('') }}
+    {{ reverseText }}
   </div>
 </div>
 
@@ -136,6 +136,11 @@ var app = new Vue({
     newText: ''
   },
   // 請在此撰寫 JavaScript
+  computed: {
+    reverseText() {
+      return this.text.split('').reverse().join('');
+    }
+  }
 });
 </script>
 
