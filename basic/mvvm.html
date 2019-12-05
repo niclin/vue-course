@@ -124,7 +124,9 @@
 
 
 <div id="app">
-  <input type="text">
+  {{ message }}
+  <div v-html="message"></div>
+  <input type="text" v-model="message">
 </div>
 
 <script>
@@ -132,9 +134,9 @@ var app = new Vue({
   el: '#app',
   // 在此建立資料內容
 
-  // data: {
-  //   message: '哈囉'
-  // }
+  data: {
+    message: '<p>哈囉</p>'
+  }
 })
 </script>
         </div>
