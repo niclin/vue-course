@@ -122,7 +122,12 @@
 </div>
 
 <div id="app">
-
+  <p>{{ list }}</p>
+  <ul>
+    <li v-for="(item, key) in list" v-if="item.age < 30">
+      {{ key }} {{ item.name }}
+    </li>
+  </ul>
 </div>
 
 <script>
