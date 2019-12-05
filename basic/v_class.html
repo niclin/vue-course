@@ -121,9 +121,9 @@
 </div>
 
 <div id="app">
-  <div class="box"></div>
+  <div class="box" :class="{ 'rotate': isTransform }"></div>
   <hr>
-  <button class="btn btn-outline-primary">選轉物件</button>
+  <button class="btn btn-outline-primary" v-on:click="isTransform = !isTransform">選轉物件</button>
 </div>
 
 <script>
