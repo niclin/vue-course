@@ -122,7 +122,7 @@
 
 
 <div id="app">
-  <img src="imgSrc" alt="">
+  <img v-bind:src="imgSrc" v-bind:class="className" alt="">
 </div>
 
 
@@ -130,7 +130,8 @@
 var app = new Vue({
   el: '#app',
   data: {
-    imgSrc: 'https://images.unsplash.com/photo-1479568933336-ea01829af8de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d9926ef56492b20aea8508ed32ec6030&auto=format&fit=crop&w=2250&q=80'
+    imgSrc: 'https://images.unsplash.com/photo-1479568933336-ea01829af8de?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d9926ef56492b20aea8508ed32ec6030&auto=format&fit=crop&w=2250&q=80',
+    className: "img-fluid"
   }
 })
 </script>
